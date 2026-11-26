@@ -1,0 +1,1387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="theme-color" content="#f47721"/>
+<link rel="icon" type="image/webp" href="assets/neferdidi-logo-mark.webp"/>
+<link rel="preload" as="image" href="assets/videos/poster1.webp" type="image/webp" fetchpriority="high"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@600;700;800;900&display=swap" onload="this.onload=null;this.rel='stylesheet'"/>
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@600;700;800;900&display=swap"/></noscript>
+<meta property="og:title" content="Neferdidi Milkteashop | Freshly Brewed, Made Your Way"/>
+<meta property="og:description" content="Explore Neferdidi's milk tea, fruit tea, coffee, and shakes. Find a branch near you."/>
+<meta name="description" content="Neferdidi Milkteashop — freshly brewed milk tea, fruit tea, coffee and shakes across Egypt."/>
+<title>Neferdidi | Milkteashop</title>
+<style>
+/* ═══════════════════════════════════════════
+   ROOT / RESET
+════════════════════════════════════════════ */
+:root {
+  --orange: #f47721;
+  --orange-dark: #d95d0d;
+  --orange-soft: #fff1e6;
+  --black: #0e0e0e;
+  --ink: #1c1c1c;
+  --muted: #767676;
+  --line: #e8e3de;
+  --cream: #fdfaf7;
+  --white: #fff;
+  --radius: 20px;
+  --shadow: 0 24px 60px rgba(14,14,14,.12);
+  --maxw: 1340px;
+  --nav-h: 72px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; scroll-padding-top: calc(var(--nav-h) + 12px); }
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: var(--white);
+  color: var(--ink);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+img, video { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+h1,h2,h3,h4 { font-family: 'Outfit', 'Inter', sans-serif; line-height: 1.1; }
+.container { max-width: var(--maxw); margin: 0 auto; padding: 0 5vw; }
+
+/* ═══════════════════════════════════════════
+   TOP BAR
+════════════════════════════════════════════ */
+.topbar {
+  height: 5px;
+  background: linear-gradient(90deg, var(--orange), #ffb347, var(--orange));
+  background-size: 200%;
+  animation: shimmer 3s linear infinite;
+}
+@keyframes shimmer { 0%{background-position:0%} 100%{background-position:200%} }
+
+/* ═══════════════════════════════════════════
+   NAV
+════════════════════════════════════════════ */
+.site-nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 300;
+  background: transparent;
+  border-bottom: 1px solid transparent;
+  transition: background .3s, border-color .3s, box-shadow .3s;
+}
+.site-nav.scrolled {
+  background: rgba(14,14,14,.82);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-bottom-color: rgba(255,255,255,.08);
+  box-shadow: 0 8px 32px rgba(0,0,0,.12);
+}
+.nav-inner {
+  max-width: var(--maxw); margin: 0 auto; padding: 0 5vw;
+  height: 70px;
+  display: flex; align-items: center; justify-content: center; gap: 24px;
+}
+.brand {
+  display: flex; align-items: center; gap: 10px;
+  font-family: 'Outfit'; font-weight: 900; font-size: 20px; letter-spacing: 1.4px;
+}
+.brand-logo {
+  height: 42px; width: auto;
+  border-radius: 12px;
+}
+.brand-dot { color: var(--orange); }
+.nav-links {
+  display: flex; align-items: center; justify-content: center; gap: clamp(8px,2vw,30px); list-style: none;
+}
+.nav-links a {
+  display: block; position: relative; padding: 10px 8px;
+  font-size: 14px; font-weight: 700; letter-spacing: .2px; color: rgba(255,255,255,.94);
+  text-shadow: 0 1px 12px rgba(0,0,0,.35);
+  transition: color .2s;
+}
+.nav-links a::after {
+  content: ''; position: absolute; left: 8px; right: 8px; bottom: 3px;
+  height: 2px; border-radius: 2px; background: var(--orange);
+  transform: scaleX(0); transform-origin: center; transition: transform .2s;
+}
+.nav-links a:hover, .nav-links a.active { color: #fff; background: transparent; }
+.nav-links a:hover::after, .nav-links a.active::after { transform: scaleX(1); }
+.nav-order-btn {
+  background: var(--orange); color: #fff;
+  padding: 11px 22px; border-radius: 12px;
+  font-size: 14px; font-weight: 800; letter-spacing: .2px;
+  border: none; cursor: pointer; font-family: inherit;
+  transition: background .2s, transform .2s;
+  box-shadow: 0 8px 20px rgba(244,119,33,.3);
+}
+.nav-order-btn:hover { background: var(--orange-dark); transform: translateY(-2px); }
+.burger {
+  display: none; width: 44px; height: 44px;
+  border: 1px solid rgba(255,255,255,.35); background: rgba(0,0,0,.18);
+  border-radius: 11px; cursor: pointer; padding: 0;
+  place-items: center; flex-direction: column; gap: 4px;
+}
+.burger span {
+  display: block; width: 18px; height: 2px;
+  background: #fff; border-radius: 2px; transition: .3s;
+}
+.burger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.burger.open span:nth-child(2) { opacity: 0; }
+.burger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+/* ═══════════════════════════════════════════
+   HERO — VIDEO REEL (3 stacked videos)
+════════════════════════════════════════════ */
+.hero {
+  position: relative; overflow: hidden;
+  background: var(--black);
+  min-height: 100svh;
+  display: flex; flex-direction: column;
+}
+.hero-reel {
+  position: relative; width: 100%; height: 100svh;
+  overflow: hidden;
+}
+/* Each video slide */
+.reel-slide {
+  position: absolute; inset: 0;
+  opacity: 0;
+  transition: opacity 1s ease;
+  pointer-events: none;
+}
+.reel-slide.active { opacity: 1; pointer-events: auto; }
+.reel-slide video {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  background: var(--black);
+}
+/* Dark overlay for readability */
+.reel-slide::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.15) 0%,
+    rgba(0,0,0,0.05) 40%,
+    rgba(0,0,0,0.6) 100%
+  );
+}
+/* Hero text overlay */
+.hero-overlay {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  z-index: 10;
+  padding: clamp(32px,6vw,80px) 5vw clamp(40px,7vw,100px);
+  display: flex; align-items: flex-end; justify-content: space-between; gap: 32px;
+}
+.hero-text .eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  color: #ffb366; font-size: 11px; font-weight: 800;
+  letter-spacing: 3.5px; text-transform: uppercase; margin-bottom: 14px;
+}
+.hero-text .eyebrow::before {
+  content: ''; width: 28px; height: 2px;
+  background: var(--orange); border-radius: 2px;
+}
+.hero-text h1 {
+  font-size: clamp(38px, 6vw, 80px);
+  font-weight: 900; letter-spacing: -2px; color: #fff;
+  line-height: 1.0;
+}
+.hero-text h1 span { color: var(--orange); }
+.hero-text p {
+  color: rgba(255,255,255,0.75); font-size: 16px;
+  max-width: 480px; line-height: 1.8; margin-top: 14px;
+}
+.hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+.btn-hero-primary {
+  background: var(--orange); color: #fff;
+  padding: 15px 30px; border-radius: 14px;
+  font-size: 15px; font-weight: 800;
+  box-shadow: 0 12px 28px rgba(244,119,33,.4);
+  transition: transform .2s, background .2s;
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.btn-hero-primary:hover { background: var(--orange-dark); transform: translateY(-3px); }
+.btn-hero-ghost {
+  background: rgba(255,255,255,0.1); color: #fff;
+  padding: 15px 30px; border-radius: 14px;
+  font-size: 15px; font-weight: 700;
+  border: 1px solid rgba(255,255,255,0.25);
+  backdrop-filter: blur(10px);
+  transition: background .2s, transform .2s;
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.btn-hero-ghost:hover { background: rgba(255,255,255,0.18); transform: translateY(-3px); }
+/* Reel dots */
+.reel-dots {
+  display: flex; gap: 8px; align-items: center;
+  flex-direction: column;
+}
+.reel-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: rgba(255,255,255,0.35);
+  cursor: pointer; transition: all .3s;
+  border: 0; padding: 0;
+}
+.reel-dot:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+.reel-dot.active {
+  width: 8px; height: 32px; border-radius: 4px;
+  background: var(--orange);
+}
+
+/* ═══════════════════════════════════════════
+   MARQUEE STRIP
+════════════════════════════════════════════ */
+.marquee {
+  background: var(--orange); overflow: hidden;
+  padding: 14px 0; white-space: nowrap;
+}
+.marquee-track {
+  display: inline-flex; gap: 36px; will-change: transform;
+  animation: marquee 28s linear infinite;
+}
+.marquee-track span {
+  font-family: 'Outfit'; font-weight: 800;
+  font-size: 13px; letter-spacing: 2.8px; text-transform: uppercase;
+  color: rgba(255,255,255,0.95);
+}
+.marquee-track span.sep { opacity: .45; }
+@keyframes marquee { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+
+/* ═══════════════════════════════════════════
+   SECTION HEADER
+════════════════════════════════════════════ */
+.sec-header { text-align: center; margin-bottom: clamp(32px,4vw,56px); }
+.sec-eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  color: var(--orange); font-size: 11px; font-weight: 800;
+  letter-spacing: 3px; text-transform: uppercase; margin-bottom: 12px;
+}
+.sec-eyebrow::before, .sec-eyebrow::after {
+  content: ''; width: 24px; height: 2px;
+  background: var(--orange); border-radius: 2px;
+}
+.sec-title {
+  font-size: clamp(28px, 4vw, 48px);
+  font-weight: 900; letter-spacing: -1.2px; color: var(--black);
+  margin-bottom: 10px;
+}
+.sec-sub { color: var(--muted); font-size: 15px; max-width: 500px; margin: 0 auto; }
+
+/* ═══════════════════════════════════════════
+   MENU SECTION — CHAGEE-STYLE
+   Phase 1: image-only grid (product image, blurred name below)
+   Phase 2: on click/tap → full card slides up with details
+════════════════════════════════════════════ */
+.menu-section {
+  padding: clamp(60px,8vw,120px) 0;
+  background: var(--cream);
+}
+/* Category tabs */
+.cat-tabs {
+  display: flex; gap: 10px; flex-wrap: wrap;
+  justify-content: center; margin-bottom: clamp(28px,4vw,52px);
+}
+.cat-tab {
+  padding: 11px 24px; border-radius: 50px;
+  font-size: 13.5px; font-weight: 700; cursor: pointer;
+  border: 2px solid transparent;
+  background: #fff; color: var(--muted);
+  transition: all .25s;
+  box-shadow: 0 2px 8px rgba(14,14,14,.06);
+}
+.cat-tab:hover { border-color: var(--orange); color: var(--orange-dark); }
+.cat-tab.active {
+  background: var(--orange); color: #fff;
+  border-color: var(--orange);
+  box-shadow: 0 8px 20px rgba(244,119,33,.3);
+}
+
+/* Category sections */
+.menu-cat + .menu-cat { margin-top: clamp(36px,5vw,64px); }
+.menu-cat-head {
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: clamp(14px,2vw,22px); padding-bottom: 12px;
+  border-bottom: 2px solid var(--line);
+}
+.menu-cat-head h3 { font-family: 'Outfit'; font-size: clamp(20px,2.6vw,28px); font-weight: 900; color: var(--black); }
+.menu-cat-head span {
+  background: var(--orange-soft); color: var(--orange-dark);
+  font-size: 12px; font-weight: 800; padding: 3px 10px; border-radius: 50px;
+}
+
+/* Grid */
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: clamp(14px,2vw,24px);
+}
+
+/* ── Menu Card ── */
+.menu-card {
+  position: relative; border-radius: 20px;
+  overflow: hidden; cursor: pointer;
+  background: #fff;
+  box-shadow: 0 4px 16px rgba(14,14,14,.07);
+  /* aspect-ratio keeps proportional squares */
+  aspect-ratio: 3/4;
+  transition: transform .3s, box-shadow .3s;
+  isolation: isolate;
+}
+.menu-card:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(14,14,14,.13); }
+
+/* Phase 1 — image fills the whole card */
+.card-img-wrap {
+  position: absolute; inset: 0;
+  transition: transform .6s cubic-bezier(0.4,0,0.2,1);
+}
+.card-img-wrap img {
+  width: 100%; height: 100%; object-fit: cover;
+}
+/* Gradient at bottom for name in phase 1 */
+.card-name-bar {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 36px 14px 14px;
+  background: linear-gradient(to top, rgba(10,10,10,0.75) 0%, transparent 100%);
+  z-index: 2;
+}
+.card-name-bar h3 {
+  color: #fff; font-size: 15px; font-weight: 800;
+  letter-spacing: .2px; line-height: 1.25;
+}
+/* Bestseller badge */
+.card-badge {
+  position: absolute; top: 12px; left: 12px; z-index: 5;
+  background: var(--orange); color: #fff;
+  font-size: 10px; font-weight: 800; letter-spacing: 1px;
+  text-transform: uppercase; padding: 4px 10px; border-radius: 50px;
+}
+
+/* Phase 2 — detail panel slides up from bottom */
+.card-detail {
+  position: absolute; left: 0; right: 0; bottom: 0;
+  z-index: 10;
+  background: rgba(255,255,255,0.97);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 20px 20px 0 0;
+  padding: 20px 18px 22px;
+  transform: translateY(100%);
+  transition: transform .45s cubic-bezier(0.4,0,0.2,1);
+  /* max height so it doesn't cover entire image */
+  max-height: 68%;
+}
+.menu-card.selected .card-detail { transform: translateY(0); }
+/* slight zoom on image when card selected */
+.menu-card.selected .card-img-wrap { transform: scale(1.06); }
+/* hide the basic name bar when detail is open */
+.menu-card.selected .card-name-bar { opacity: 0; }
+
+.card-detail-name {
+  font-family: 'Outfit'; font-size: 17px; font-weight: 900;
+  color: var(--black); margin-bottom: 6px; line-height: 1.2;
+}
+.card-detail-desc {
+  font-size: 12.5px; color: var(--muted); line-height: 1.65;
+  margin-bottom: 12px;
+}
+.card-price-row {
+  display: flex; gap: 8px; flex-wrap: wrap; align-items: center;
+}
+.card-price {
+  display: inline-flex; align-items: center; gap: 4px;
+  background: var(--orange-soft); color: var(--orange-dark);
+  padding: 5px 12px; border-radius: 50px;
+  font-size: 13px; font-weight: 800;
+}
+.card-price small {
+  font-size: 10px; font-weight: 700; opacity: .75;
+}
+/* Close indicator */
+.card-detail-close {
+  position: absolute; top: 10px; right: 14px;
+  width: 28px; height: 28px; border-radius: 50%;
+  background: var(--line); border: none; cursor: pointer;
+  display: grid; place-items: center; font-size: 14px;
+  color: var(--muted); transition: background .2s;
+}
+.card-detail-close:hover { background: var(--orange-soft); color: var(--orange); }
+/* Category grid visibility */
+.cat-group { display: none; }
+.cat-group.visible { display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: clamp(14px,2vw,24px);
+}
+
+/* ═══════════════════════════════════════════
+   ABOUT / STORY SECTION
+════════════════════════════════════════════ */
+.story-section {
+  padding: clamp(60px,8vw,120px) 0;
+  background: var(--black); color: #fff; overflow: hidden;
+}
+.story-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px,5vw,80px);
+  align-items: center;
+}
+.story-eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  color: var(--orange); font-size: 11px; font-weight: 800;
+  letter-spacing: 3px; text-transform: uppercase; margin-bottom: 18px;
+}
+.story-eyebrow::before { content: ''; width: 24px; height: 2px; background: var(--orange); border-radius: 2px; }
+.story-h2 {
+  font-size: clamp(28px,3.5vw,46px); font-weight: 900;
+  letter-spacing: -1px; color: #fff; margin-bottom: 18px;
+}
+.story-h2 span { color: var(--orange); }
+.story-p { color: rgba(255,255,255,.65); font-size: 15.5px; line-height: 1.85; margin-bottom: 32px; }
+.story-stats {
+  display: flex; gap: 36px; flex-wrap: wrap;
+  border-top: 1px solid rgba(255,255,255,.1);
+  padding-top: 28px;
+}
+.stat-item b {
+  display: block; font-family: 'Outfit';
+  font-size: 36px; font-weight: 900; color: #fff; letter-spacing: -1.5px;
+}
+.stat-item b em { color: var(--orange); font-style: normal; }
+.stat-item span {
+  font-size: 11px; text-transform: uppercase;
+  letter-spacing: 2px; color: rgba(255,255,255,.45); font-weight: 700;
+}
+.story-visual {
+  position: relative; border-radius: 24px; overflow: hidden;
+  aspect-ratio: 4/5;
+}
+.story-visual img {
+  width: 100%; height: 100%; object-fit: cover;
+}
+.story-badge {
+  position: absolute; bottom: 24px; left: 24px;
+  background: var(--orange); color: #fff;
+  padding: 14px 20px; border-radius: 16px;
+  font-family: 'Outfit'; font-weight: 900; font-size: 14px;
+  box-shadow: 0 12px 30px rgba(244,119,33,.5);
+  display: flex; align-items: center; gap: 10px;
+}
+
+/* ═══════════════════════════════════════════
+   SPECIALS SECTION
+════════════════════════════════════════════ */
+.specials-section {
+  padding: clamp(60px,8vw,120px) 0;
+  background: var(--white);
+}
+.specials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: clamp(16px,2vw,28px);
+}
+.special-card {
+  border-radius: 24px; overflow: hidden;
+  position: relative; aspect-ratio: 3/4;
+  box-shadow: 0 8px 32px rgba(14,14,14,.1);
+  transition: transform .3s;
+}
+.special-card:hover { transform: translateY(-8px); }
+.special-card img {
+  width: 100%; height: 100%; object-fit: cover;
+}
+.special-info {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 50px 20px 20px;
+  background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 100%);
+}
+.special-info h3 { color: #fff; font-size: 18px; font-weight: 800; }
+.special-info .price-tag {
+  margin-top: 8px;
+  display: inline-block; background: var(--orange); color: #fff;
+  padding: 4px 14px; border-radius: 50px;
+  font-size: 13px; font-weight: 800;
+}
+
+/* ═══════════════════════════════════════════
+   BRANCHES SECTION
+════════════════════════════════════════════ */
+.branches-section {
+  padding: clamp(60px,8vw,120px) 0;
+  background: var(--cream);
+}
+.branches-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(260px,1fr)); gap: 20px;
+}
+.branch-card {
+  background: #fff; border-radius: 20px;
+  padding: 24px; border: 1px solid var(--line);
+  transition: box-shadow .25s, transform .25s;
+}
+.branch-card:hover { box-shadow: var(--shadow); transform: translateY(-4px); }
+.branch-icon {
+  width: 44px; height: 44px; border-radius: 12px;
+  background: var(--orange-soft); display: grid; place-items: center;
+  margin-bottom: 14px; font-size: 20px;
+}
+.branch-card h3 { font-size: 16px; font-weight: 800; margin-bottom: 4px; }
+.branch-card p { font-size: 13px; color: var(--muted); line-height: 1.6; }
+.branch-hours {
+  margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--line);
+  font-size: 12px; color: var(--muted); display: flex; align-items: center; gap: 6px;
+}
+.hours-dot { width: 7px; height: 7px; border-radius: 50%; background: #22c55e; flex-shrink: 0; }
+
+
+
+.map-wrap { position: relative; margin: 0 0 26px; border: 1px solid var(--line); border-radius: 20px; overflow: hidden; box-shadow: var(--shadow); background: var(--cream); }
+#branch-map { height: 430px; width: 100%; z-index: 0; }
+.map-fallback { padding: 48px 20px; text-align: center; color: var(--muted); }
+.map-fallback a { color: var(--orange-dark); font-weight: 800; }
+.branch-actions { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-top: 14px; }
+.branch-map-link { margin-top: 0; }
+.branch-show-map { border: 1px solid #ffd0ad; background: var(--orange-soft); color: var(--orange-dark); border-radius: 9px; padding: 7px 10px; font: inherit; font-size: 11px; font-weight: 800; cursor: pointer; }
+.branch-show-map:hover { background: #ffe2ce; }
+.leaflet-popup-content-wrapper { border-radius: 12px; }
+.leaflet-popup-content { margin: 12px 14px; font-family: 'Inter', sans-serif; }
+.map-popup b { display: block; font-size: 14px; margin-bottom: 4px; }
+.map-popup span { display: block; color: var(--muted); font-size: 12px; line-height: 1.5; margin-bottom: 8px; }
+.map-popup a { color: var(--orange-dark); font-size: 12px; font-weight: 800; }
+@media(max-width:700px) { #branch-map { height: 340px; } }
+
+.branch-tools {
+  display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+  margin: -18px 0 26px;
+}
+.branch-search-wrap {
+  display: flex; align-items: center; gap: 10px; flex: 1 1 260px;
+  min-width: 0; padding: 0 15px; height: 48px; border-radius: 12px;
+  background: #fff; border: 1px solid var(--line); color: var(--muted);
+}
+.branch-search-wrap span { font-size: 24px; line-height: 1; }
+.branch-search-wrap input { width: 100%; border: 0; outline: 0; background: transparent; font: inherit; color: var(--ink); }
+#branchArea {
+  height: 48px; min-width: 160px; padding: 0 14px; border-radius: 12px;
+  border: 1px solid var(--line); background: #fff; color: var(--ink); font: inherit;
+}
+.branch-count { margin-left: auto; color: var(--muted); font-size: 11px; font-weight: 800; letter-spacing: 1.5px; }
+.branch-number { color: var(--orange-dark); font-size: 10px; font-weight: 900; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 9px; }
+.branch-map-link {
+  display: inline-flex; align-items: center; gap: 7px; margin-top: 16px;
+  color: var(--orange-dark); font-size: 12px; font-weight: 800;
+  border-bottom: 1px solid rgba(217,93,13,.25); padding-bottom: 3px;
+}
+.branch-map-link:hover { color: var(--black); border-color: var(--black); }
+.branches-empty { padding: 30px 10px; text-align: center; color: var(--muted); }
+@media (max-width: 540px) {
+  .branch-tools { margin-top: -12px; }
+  #branchArea { flex: 1 1 150px; }
+  .branch-count { width: 100%; margin: 0; }
+}
+
+/* ═══════════════════════════════════════════
+   FOOTER
+════════════════════════════════════════════ */
+.site-footer {
+  background: var(--black); color: rgba(255,255,255,.65);
+  padding: clamp(48px,6vw,80px) 0 32px;
+}
+.footer-grid {
+  display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  gap: 40px; margin-bottom: 48px;
+}
+.footer-brand .brand { margin-bottom: 14px; color: #fff; }
+.footer-brand p { font-size: 13.5px; line-height: 1.8; max-width: 240px; }
+.footer-col h4 {
+  color: #fff; font-size: 13px; font-weight: 800;
+  letter-spacing: 1.4px; text-transform: uppercase; margin-bottom: 18px;
+}
+.footer-col a {
+  display: block; font-size: 13.5px; margin-bottom: 10px;
+  transition: color .2s;
+}
+.footer-col a:hover { color: var(--orange); }
+.footer-social { display: flex; gap: 10px; margin-top: 20px; }
+.social-btn {
+  width: 40px; height: 40px; border-radius: 10px;
+  background: rgba(255,255,255,.08); display: grid; place-items: center;
+  font-size: 17px; transition: background .2s;
+}
+.social-btn:hover { background: var(--orange); }
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,.08);
+  padding-top: 24px; display: flex; align-items: center; justify-content: space-between;
+  gap: 12px; flex-wrap: wrap; font-size: 12.5px;
+}
+.footer-bottom a { color: var(--orange); }
+
+/* ═══════════════════════════════════════════
+   SCROLL-APPEAR ANIMATION
+════════════════════════════════════════════ */
+[data-appear] {
+  opacity: 0; transform: translateY(28px);
+  transition: opacity .7s ease, transform .7s ease;
+}
+[data-appear].appeared { opacity: 1; transform: none; }
+.branch-card[hidden] { display: none !important; }
+
+/* ═══════════════════════════════════════════
+   MOBILE
+════════════════════════════════════════════ */
+.mobile-nav { display: none; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .marquee-track { animation: none; }
+}
+@media (max-width: 900px) {
+  .nav-links { display: none; }
+  .nav-inner { height: 64px; justify-content: flex-end; }
+  .burger { display: flex; position: relative; z-index: 400; }
+  .mobile-nav {
+    display: none; position: fixed; inset: 0; z-index: 350;
+    background: rgba(14,14,14,.96); backdrop-filter: blur(20px);
+    flex-direction: column; align-items: center; justify-content: center; gap: 12px;
+  }
+  .mobile-nav.open { display: flex; }
+  .mobile-nav a {
+    color: #fff; font-size: 22px; font-weight: 700; padding: 14px 32px;
+    border-radius: 12px; width: 80%; text-align: center;
+  }
+  .mobile-nav a:hover { color: var(--orange); background: rgba(255,255,255,.06); }
+
+  .story-grid { grid-template-columns: 1fr; }
+  .story-visual { max-height: 360px; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .menu-grid .cat-group { grid-template-columns: repeat(auto-fill, minmax(150px,1fr)); }
+}
+@media (max-width: 540px) {
+  /* Menu: 2 cards per row on phones instead of one huge card per row */
+  .menu-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .menu-card { border-radius: 16px; }
+  .card-name-bar { padding: 28px 10px 10px; }
+  .card-name-bar h3 { font-size: 13px; }
+  .card-badge { top: 8px; left: 8px; font-size: 9px; padding: 3px 8px; }
+  .card-detail { padding: 14px 12px 14px; max-height: 88%; overflow-y: auto; }
+  .card-detail-name { font-size: 14px; padding-right: 26px; }
+  .card-detail-desc { font-size: 11.5px; line-height: 1.5; margin-bottom: 8px; }
+  .card-price { padding: 4px 9px; font-size: 12px; }
+  .card-detail-close { top: 8px; right: 8px; width: 24px; height: 24px; font-size: 12px; }
+  .hero-overlay { flex-direction: column; }
+  .reel-dots { flex-direction: row; }
+  .reel-dot.active { width: 32px; height: 8px; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .cat-tabs { gap: 8px; }
+  .cat-tab { font-size: 12.5px; padding: 9px 18px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAVIGATION: text links only -->
+<nav class="site-nav" id="siteNav" aria-label="Main navigation">
+  <div class="nav-inner">
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#menu" class="active">Menu</a></li>
+      <li><a href="#specials">Specials</a></li>
+      <li><a href="#story">Our Story</a></li>
+      <li><a href="#branches">Branches</a></li>
+    </ul>
+    <button class="burger" id="burger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-nav" id="mobileNav">
+    <a href="#menu" onclick="closeMobile()">Menu</a>
+    <a href="#specials" onclick="closeMobile()">Specials</a>
+    <a href="#story" onclick="closeMobile()">Our Story</a>
+    <a href="#branches" onclick="closeMobile()">Branches</a>
+  </div>
+</nav>
+
+<!-- ══════════════════════ HERO REEL ══════════════════════ -->
+<section class="hero" id="home">
+  <div class="hero-reel" id="heroReel">
+
+    <!-- Slide 1 -->
+    <div class="reel-slide active" data-index="0">
+      <video muted playsinline loop autoplay preload="auto" poster="assets/videos/poster1.webp" width="720" height="1280" disablepictureinpicture aria-hidden="true">
+        <source src="assets/videos/vid1.mp4" type="video/mp4"/>
+      </video>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="reel-slide" data-index="1">
+      <video muted playsinline loop preload="none" poster="assets/videos/poster2.webp" width="720" height="1280" disablepictureinpicture aria-hidden="true">
+        <source src="assets/videos/vid2.mp4" type="video/mp4"/>
+      </video>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="reel-slide" data-index="2">
+      <video muted playsinline loop preload="none" poster="assets/videos/poster3.webp" width="480" height="854" disablepictureinpicture aria-hidden="true">
+        <source src="assets/videos/vid3.mp4" type="video/mp4"/>
+      </video>
+    </div>
+
+    <!-- Overlay text -->
+    <div class="hero-overlay">
+      <div class="hero-text">
+        <div class="eyebrow">🇪🇬 Made in Egypt · Est. 2023</div>
+        <h1>Brewed to<br/><span>Perfection</span></h1>
+        <p>Premium milk tea, fruit tea &amp; coffee — inspired by the world, crafted in Egypt.</p>
+        <div class="hero-actions">
+          <a class="btn-hero-primary" href="#menu">Explore Menu →</a>
+          <a class="btn-hero-ghost" href="#story">Our Story</a>
+        </div>
+      </div>
+      <div class="reel-dots" id="reelDots">
+        <button type="button" class="reel-dot active" data-dot="0" aria-label="Video 1"></button>
+        <button type="button" class="reel-dot" data-dot="1" aria-label="Video 2"></button>
+        <button type="button" class="reel-dot" data-dot="2" aria-label="Video 3"></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee">
+  <div class="marquee-track">
+    <span>Milk Tea</span><span class="sep">✦</span>
+    <span>Fruit Tea</span><span class="sep">✦</span>
+    <span>Coffee</span><span class="sep">✦</span>
+    <span>Boba Pearls</span><span class="sep">✦</span>
+    <span>Brown Sugar</span><span class="sep">✦</span>
+    <span>Taro</span><span class="sep">✦</span>
+    <span>Pistachio</span><span class="sep">✦</span>
+    <span>Cream Foam</span><span class="sep">✦</span>
+    <span>Fresh Brewed</span><span class="sep">✦</span>
+    <!-- duplicate for seamless loop -->
+    <span>Milk Tea</span><span class="sep">✦</span>
+    <span>Fruit Tea</span><span class="sep">✦</span>
+    <span>Coffee</span><span class="sep">✦</span>
+    <span>Boba Pearls</span><span class="sep">✦</span>
+    <span>Brown Sugar</span><span class="sep">✦</span>
+    <span>Taro</span><span class="sep">✦</span>
+    <span>Pistachio</span><span class="sep">✦</span>
+    <span>Cream Foam</span><span class="sep">✦</span>
+    <span>Fresh Brewed</span><span class="sep">✦</span>
+  </div>
+</div>
+
+<!-- ══════════════════════ MENU SECTION ══════════════════════ -->
+<section class="menu-section" id="menu">
+  <div class="container">
+    <div class="sec-header" data-appear>
+      <div class="sec-eyebrow">Our Menu</div>
+      <h2 class="sec-title">Pick Your Favourite</h2>
+      <p class="sec-sub">Tap any drink to discover its story & price</p>
+    </div>
+
+    <!-- Category Tabs -->
+    <div class="cat-tabs" id="catTabs">
+      <button class="cat-tab active" data-cat="all">🧋 All</button>
+      <button class="cat-tab" data-cat="milk">🥛 Milk Tea</button>
+      <button class="cat-tab" data-cat="fruit">🍋 Fruit Tea</button>
+      <button class="cat-tab" data-cat="coffee">🍫 Coffee &amp; Cocoa</button>
+      <button class="cat-tab" data-cat="hot">☕ Hot</button>
+      <button class="cat-tab" data-cat="ice">🧊 Iced</button>
+      <button class="cat-tab" data-cat="special">⭐ Specials</button>
+    </div>
+
+    <!-- Menu Grid — all items rendered, filtered by JS -->
+    <div id="menuGrid"></div>
+  </div>
+</section>
+
+<!-- ══════════════════════ SPECIALS SECTION ══════════════════════ -->
+<section class="specials-section" id="specials">
+  <div class="container">
+    <div class="sec-header" data-appear>
+      <div class="sec-eyebrow">Seasonal</div>
+      <h2 class="sec-title">Limited Specials</h2>
+      <p class="sec-sub">Only here, only now. Don't miss them.</p>
+    </div>
+    <div class="specials-grid">
+      <div class="special-card" data-appear>
+        <img src="assets/special-hot-mandarin.webp" alt="Hot Mandarin Tea" loading="lazy"/>
+        <div class="special-info">
+          <h3>Hot Mandarin Tea</h3>
+          <span class="price-tag">160 EGP</span>
+        </div>
+      </div>
+      <div class="special-card" data-appear>
+        <img src="assets/special-lemon-black-tea.webp" alt="Lemon Black Tea" loading="lazy"/>
+        <div class="special-info">
+          <h3>Lemon Black Tea</h3>
+          <span class="price-tag">130 EGP</span>
+        </div>
+      </div>
+      <div class="special-card" data-appear>
+        <img src="assets/special-orange-black-tea.webp" alt="Orange Black Tea" loading="lazy"/>
+        <div class="special-info">
+          <h3>Orange Black Tea</h3>
+          <span class="price-tag">130 EGP</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════ STORY SECTION ══════════════════════ -->
+<section class="story-section" id="story">
+  <div class="container">
+    <div class="story-grid">
+      <div data-appear>
+        <div class="story-eyebrow">Our Story</div>
+        <h2 class="story-h2">From China's Tea Gardens<br/>to <span>Egypt's Streets</span></h2>
+        <p class="story-p">
+          Neferdidi was born from a simple dream: to bring authentic Chinese milk tea culture to Egypt — 
+          freshly brewed, lovingly crafted, and made exactly your way. Every sip tells a story 
+          of tradition meeting modernity, East meeting West.
+        </p>
+        <p class="story-p">
+          We source the finest tea leaves and pair them with the freshest local ingredients, 
+          creating something truly unique. From the streets of Cairo to the sands near the Pyramids, 
+          Neferdidi is Egypt's cup of joy.
+        </p>
+        <div class="story-stats">
+          <div class="stat-item"><b>50<em>+</em></b><span>Menu Items</span></div>
+          <div class="stat-item"><b>13</b><span>Branches</span></div>
+          <div class="stat-item"><b>2023</b><span>Est. Egypt</span></div>
+        </div>
+      </div>
+      <div class="story-visual" data-appear>
+        <img src="assets/pyramids-01.webp" alt="Neferdidi by the Pyramids" loading="lazy"/>
+        <div class="story-badge">🏛️ Cairo's favourite milk tea</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════ BRANCHES SECTION ══════════════════════ -->
+<section class="branches-section" id="branches">
+  <div class="container">
+    <div class="sec-header" data-appear>
+      <div class="sec-eyebrow">Find Us</div>
+      <h2 class="sec-title">Our Branches</h2>
+      <p class="sec-sub">Find your nearest Neferdidi location across Egypt</p>
+    </div>
+    <div class="branch-tools" data-appear>
+      <label class="branch-search-wrap">
+        <span aria-hidden="true">⌕</span>
+        <input id="branchSearch" type="search" placeholder="Search by branch or area…" aria-label="Search branches" autocomplete="off" />
+      </label>
+      <select id="branchArea" aria-label="Filter branches by area">
+        <option value="all">All areas</option>
+        <option value="cairo">Cairo</option>
+        <option value="newcairo">New Cairo</option>
+        <option value="outside">Outside Cairo</option>
+      </select>
+      <span class="branch-count" id="branchCount">13 LOCATIONS</span>
+    </div>
+    <div class="map-wrap" id="branchMapWrap">
+      <div id="branch-map" role="region" aria-label="Map of Neferdidi branches"></div>
+      <div class="map-fallback" id="branchMapFallback" hidden>The map could not load. <a href="https://www.google.com/maps/search/Neferdidi/" target="_blank" rel="noopener">Search Neferdidi on Google Maps ↗</a></div>
+    </div>
+    <div class="branches-grid" id="branchesGrid">
+      <article class="branch-card" data-appear data-branch="city stars masaken al mohandesin, nasr city" data-area="cairo" data-lat="30.0734298" data-lng="31.3473235">
+        <div class="branch-number">01 / Cairo</div>
+        <h3>City Stars</h3>
+        <p>Masaken Al Mohandesin, Nasr City</p>
+        <div class="branch-actions">
+          <a class="branch-map-link" href="https://www.google.com/maps/place/Neferdidi/@30.0734053,31.3473583,17.75z/data=!4m6!3m5!1s0x14583f0055443ac1:0xb023b73282393532!8m2!3d30.0734298!4d31.3473235!16s%2Fg%2F11yvcx_s3_!18m1!1e1?entry=ttu&amp;g_ep=EgoyMDI2MTAwNy4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer">Open in Google Maps <span aria-hidden="true">↗</span></a>
+          <button class="branch-show-map" type="button" data-focus-branch>Show on map</button>
+        </div>
+      </article>
+      <article class="branch-card" data-appear data-branch="maadi in front of street of happiness, maadi city center entrance" data-area="cairo" data-lat="29.9627" data-lng="31.2767" data-approx="true">
+        <div class="branch-number">02 / Cairo</div>
+        <h3>Maadi</h3>
+        <p>In front of Street of Happiness, Maadi City Center Entrance</p>
+        <div class="branch-actions">
+          <a class="branch-map-link" href="https://www.google.com/maps/place/Neferdidi+Maadi,+infront+of,+Street+Of+Happiness,+Maadi+City+Center+Entrance,+Maadi,+Cairo+Governorate/data=!4m2!3m1!1s0x1458397f0593a4c7:0x3dd2337ac818cd5b!18m1!1e1?utm_source=mstt_1&amp;entry=gps&amp;coh=192189&amp;g_ep=CAESBzI2LjQwLjAYACCenQoq2wEsMTAwODQyOTQyLDk0MjY3NzI3LDk0MjkyMTk1LDk0Mjk5NTMyLDEwMDc5NjQ5OCwxMDA3OTc2NjEsMTAwNzk2NTM1LDk0MjgwNTc2LDk0MjA3Mzk0LDk0MjA3NTA2LDk0MjA4NTA2LDk0MjE4NjUzLDk0MjI5ODM5LDEwMDgwODY1NCw5NDI3NTE2OCw5NDI3OTYxOSwxMDA4MzU3MDQsMTAwODI1MDI1LDEwMDgyMDIzNywxMDA4MjI0OTQsMTAwODI3OTc1LDEwMDgzODM1OSwxMjE4MTY0NjFCAkVH&amp;skid=fac3bc88-920d-4d39-aced-502c2816f140" target="_blank" rel="noopener noreferrer">Open in Google Maps <span aria-hidden="true">↗</span></a>
+          <button class="branch-show-map" type="button" data-focus-branch>Show on map</button>
+        </div>
+      </article>
+      <article class="branch-card" data-appear data-branch="the egyptian museum tahrir square, wasim hasan, qasr el nil, downtown cairo" data-area="cairo" data-lat="30.0478" data-lng="31.2336" data-approx="true">
+        <div class="branch-number">03 / Cairo</div>
+        <h3>The Egyptian Museum</h3>
+        <p>Tahrir Square, Wasim Hasan, Qasr El Nil, Downtown Cairo</p>
+        <div class="branch-actions">
+          <a class="branch-map-link" href="https://www.google.com/maps/place/26WM%2BQ73+Neferdidi+-The+Egyptian+Museum,+%D9%85%D9%8A%D8%AF%D8%A7%D9%86+%D8%A7%D9%84%D8%AA%D8%AD%D8%B1%D9%8A%D8%B1,+Wasim+Hasan,+Ismailia,+Qasr+El+Nil,+Cairo+Governorate+4272083%E2%80%AD/data=!4m2!3m1!1s0x1458410036441b3b:0xa19d326d16f62e8!18m1!1e1?utm_source=mstt_1&amp;entry=gps&amp;coh=192189&amp;g_ep=CAESBzI2LjQwLjAYACCenQoq2wEsMTAwODQyOTQyLDk0MjY3NzI3LDk0MjkyMTk1LDk0Mjk5NTMyLDEwMDc5NjQ5OCwxMDA3OTc3NjEsMTAwNzk2NTM1LDk0MjgwNTc2LDk0MjA3Mzk0LDk0MjA3NTA2LDk0MjA4NTA2LDk0MjE4NjUzLDk0MjI5ODM5LDEwMDgwODY1NCw5NDI3NTE2OCw5NDI3OTYxOSwxMDA4MzU3MDQsMTAwODI1MDI1LDEwMDgyMDIzNywxMDA4MjI0OTQsMTAwODI3OTc1LDEwMDgzODM1OSwxMjE4MTY0NjFCAkVH&amp;skid=72b572dd-a4a5-4c3c-9152-eae404419db4" target="_blank" rel="noopener noreferrer">Open in Google Maps <span aria-hidden="true">↗</span></a>
+          <button class="branch-show-map" type="button" data-focus-branch>Show on map</button>
+        </div>
+      </article>
+      <article class="branch-card" data-appear data-branch="neferdidi fuel up el-moshir tantawy axis, al hay al asher, nasr city" data-area="cairo" data-lat="30.0163764" data-lng="31.3897003">
+        <div class="branch-number">04 / Cairo</div>
+        <h3>Neferdidi Fuel Up</h3>
+        <p>El-Moshir Tantawy Axis, Al Hay Al Asher, Nasr City</p>
+        <div class="branch-actions">
+          <a class="branch-map-link" href="https://www.google.com/maps/place/Neferdidi+(Fuel+Up)/@30.0163764,31.3897003,17z/data=!3m1!4b1!4m6!3m5!1s0x14583dd6fd4535eb:0x49f2ce54b3b1ce66!8m2!3d30.0163764!4d31.3897003!16s%2Fg%2F11zwqvs2vs!18m1!1e1?entry=ttu&amp;g_ep=EgoyMDI2MTAwNy4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer">Open in Google Maps <span aria-hidden="true">↗</span></a>
+          <button class="branch-show-map" type="button" data-focus-branch>Show on map</button>
+        </div>
+      </article>
+      <article class="branch-card" data-appear data-branch="10th of ramadan misr el nour road, 10th of ramadan second" data-area="outside" data-lat="30.3190615" data-lng="31.7377685">
+        <div class="branch-number">05 / Outside Cairo</div>
+        <h3>10th of Ramadan</h3>
+        <p>Misr El Nour Road, 10th of Ramadan Second</p>
+        <div class="branch-actions">
+          <a class="branch-map-link" href="https://www.google.com/maps/place/Neferdidi/@30.3190615,31.7377685,17z/data=!3m1!4b1!4m6!3m5!1s0x14f80716072b166d:0xbf64b5e7502cfb0d!8m2!3d30.3190615!4d31.7377685!16s%2Fg%2F11nvjtg7tb!18m1!1e1?entry=ttu&amp;g_ep=EgoyMDI2MTAwNy4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer">Open in Google Maps <span aria-hidden="true">↗</span></a>
+          <button class="branch-show-map" type="button" data-focus-branch>Show on map</button>
+        </div>
+      </article>
+      <article class="branch-card" data-appear data-branch="ismailia 3 the ring road, el sheikh zayed, ismailia 3" data-area="outside" data-lat="30.6203611" data-lng="32.2853221">
+        <div class="branch-number">06 / Outside Cairo</div>
+        <h3>Ismailia 3</h3>
+        <p>The Ring Road, El Sheikh Zayed, Ismailia 3</p>
+        <div class="branch-actions">
+          <a class="branch-map-link" href="https://www.google.com/maps/place/Neferdidi/@30.6203611,32.2853221,17z/data=!3m1!4b1!4m6!3m5!1s0x14f859ed9e10db63:0x7fa3b16c67bdc0c0!8m2!3d30.6203611!4d32.2853221!16s%2Fg%2F11zfkp3dq0!18m1!1e1?entry=ttu&amp;g_ep=EgoyMDI2MTAwNy4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer">Open in Google Maps <span aria-hidden="true">↗</span></a>
+          <button class="branch-show-map" type="button" data-focus-branch>Show on map</button>
+        </div>
+      </article>
+      <article class="branch-card" data-appear data-branch="park mall park mall, new cairo 1" data-area="newcairo" data-lat="30.029" data-lng="31.472" data-approx="true">
+        <div class="branch-number">07 / New Cairo</div>
+        <h3>Park Mall</h3>
+        <p>Park Mall, New Cairo 1</p>
+        <div class="branch-actions">
+          <a class="branch-map-link" href="https://www.google.com/maps/place/Cairo+Governorate,+New+Cairo+1,+Neferdidi+park+mall/data=!4m2!3m1!1s0x145823f5e1801a31:0x630cff2b20c6e3" target="_blank" rel="noopener noreferrer">Open in Google Maps <span aria-hidden="true">↗</span></a>
+          <button class="branch-show-map" type="button" data-focus-branch>Show on map</button>
+        </div>
+      </article>
+      <article class="branch-card" data-appear data-branch="nasr city – 8th district helmy abd el-aaty street, al manteqah ath thamenah, nasr city" data-area="cairo" data-lat="30.0555" data-lng="31.338" data-approx="true">
+        <div class="branch-number">08 / Cairo</div>
+        <h3>Nasr City – 8th District</h3>
+        <p>Helmy Abd El-Aaty Street, Al Manteqah Ath Thamenah, Nasr City</p>
+        <div class="branch-actions">
+          <a class="branch-map-link" href="https://maps.app.goo.gl/2yRkEEXpxKFH7shC7" target="_blank" rel="noopener noreferrer">Open in Google Maps <span aria-hidden="true">↗</span></a>
+          <button class="branch-show-map" type="button" data-focus-branch>Show on map</button>
+        </div>
+      </article>
+      <article class="branch-card" data-appear data-branch="citadel saladin citadel area, cairo" data-area="cairo" data-lat="30.0287" data-lng="31.2611" data-approx="true">
+        <div class="branch-number">09 / Cairo</div>
+        <h3>Citadel</h3>
+        <p>Saladin Citadel area, Cairo</p>
+        <div class="branch-actions">
+          <a class="branch-map-link" href="https://maps.app.goo.gl/CM1u1bDSRvHQ3LaF7" target="_blank" rel="noopener noreferrer">Open in Google Maps <span aria-hidden="true">↗</span></a>
+          <button class="branch-show-map" type="button" data-focus-branch>Show on map</button>
+        </div>
+      </article>
+      <article class="branch-card" data-appear data-branch="sheraton ankara street, sheraton al matar, el nozha" data-area="cairo" data-lat="30.0985" data-lng="31.372" data-approx="true">
+        <div class="branch-number">10 / Cairo</div>
+        <h3>Sheraton</h3>
+        <p>Ankara Street, Sheraton Al Matar, El Nozha</p>
+        <div class="branch-actions">
+          <a class="branch-map-link" href="https://maps.app.goo.gl/egJypythCJpe4Asz8" target="_blank" rel="noopener noreferrer">Open in Google Maps <span aria-hidden="true">↗</span></a>
+          <button class="branch-show-map" type="button" data-focus-branch>Show on map</button>
+        </div>
+      </article>
+      <article class="branch-card" data-appear data-branch="child’s park aku plaza, abou dawoud al zaheri street, 6th district, nasr city" data-area="cairo" data-lat="30.064" data-lng="31.342" data-approx="true">
+        <div class="branch-number">11 / Cairo</div>
+        <h3>Child’s Park</h3>
+        <p>Aku Plaza, Abou Dawoud Al Zaheri Street, 6th District, Nasr City</p>
+        <div class="branch-actions">
+          <a class="branch-map-link" href="https://maps.app.goo.gl/RYmEf6sU4jKnjgbA7" target="_blank" rel="noopener noreferrer">Open in Google Maps <span aria-hidden="true">↗</span></a>
+          <button class="branch-show-map" type="button" data-focus-branch>Show on map</button>
+        </div>
+      </article>
+      <article class="branch-card" data-appear data-branch="obour – golf city mall golf city mall, obour, al-qalyubia" data-area="outside" data-lat="30.1740509" data-lng="31.4751113">
+        <div class="branch-number">12 / Outside Cairo</div>
+        <h3>Obour – Golf City Mall</h3>
+        <p>Golf City Mall, Obour, Al-Qalyubia</p>
+        <div class="branch-actions">
+          <a class="branch-map-link" href="https://www.google.com/maps/place/neferdidi+el+obour/@30.174349,31.3933971,12z/data=!4m6!3m5!1s0x14581b6edef15b4b:0x58431d251db9f072!8m2!3d30.1740509!4d31.4751113!16s%2Fg%2F11zz9xn38v?entry=ttu&amp;g_ep=EgoyMDI2MTAwNy4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer">Open in Google Maps <span aria-hidden="true">↗</span></a>
+          <button class="branch-show-map" type="button" data-focus-branch>Show on map</button>
+        </div>
+      </article>
+      <article class="branch-card" data-appear data-branch="downtown downtown cairo" data-area="cairo" data-lat="30.0444" data-lng="31.2357" data-approx="true">
+        <div class="branch-number">13 / Cairo</div>
+        <h3>Downtown</h3>
+        <p>Downtown Cairo</p>
+        <div class="branch-actions">
+          <a class="branch-map-link" href="https://maps.app.goo.gl/BqkxXgY1vdEnTfsn7" target="_blank" rel="noopener noreferrer">Open in Google Maps <span aria-hidden="true">↗</span></a>
+          <button class="branch-show-map" type="button" data-focus-branch>Show on map</button>
+        </div>
+      </article>
+    </div>
+    <p class="branches-empty" id="branchesEmpty" hidden>No branches match your search. Try another name or area.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════ FOOTER ══════════════════════ -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="brand" style="color:#fff">
+          <img src="assets/neferdidi-mascot.webp" alt="Neferdidi" class="brand-logo"/>
+          NEFERDIDI
+        </div>
+        <p>Egypt's premium milk tea shop — freshly brewed, made your way, every single day.</p>
+        <div class="footer-social">
+          <a class="social-btn" href="https://www.instagram.com/neferdidi.milktea/" target="_blank" rel="noopener" aria-label="Instagram">📷</a>
+          <a class="social-btn" href="https://www.tiktok.com/@neferdidi.milkteashop" target="_blank" rel="noopener" aria-label="TikTok">🎵</a>
+          <a class="social-btn" href="#" aria-label="Facebook">📘</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Menu</h4>
+        <a href="#menu">Milk Tea</a>
+        <a href="#menu">Fruit Tea</a>
+        <a href="#menu">Hot Drinks</a>
+        <a href="#menu">Iced Drinks</a>
+        <a href="#specials">Seasonal Specials</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="#story">Our Story</a>
+        <a href="#branches">Branches</a>
+        <a href="#">Careers</a>
+        <a href="#">Franchise</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a href="https://www.instagram.com/neferdidi.milktea/" target="_blank">Instagram</a>
+        <a href="https://www.tiktok.com/@neferdidi.milkteashop" target="_blank">TikTok</a>
+        <a href="#">WhatsApp</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2024 Neferdidi Milkteashop. All rights reserved.</span>
+      <span>Freshly Brewed. <a href="#home">Back to top ↑</a></span>
+    </div>
+  </div>
+</footer>
+
+<!-- ══════════════════════════════════════════
+   JAVASCRIPT
+══════════════════════════════════════════ -->
+<script>
+// ─── MENU DATA ───────────────────────────────────────────────
+const MENU = [
+  // ── Milk Tea
+  { name:"Brown Sugar Milk Tea", img:"drink-07.webp", cat:"milk", badge:"Bestseller", desc:"Caramelised brown sugar syrup, creamy milk and warm boba pearls.", prices:[{s:"L",p:"140 EGP"},{s:"M",p:"120 EGP"}] },
+  { name:"Brown Sugar Pudding Milk Tea", img:"drink-38.webp", cat:"milk", desc:"Classic milk tea with boba pearls and silky pudding.", prices:[{s:"L",p:"160 EGP"},{s:"M",p:"140 EGP"}] },
+  { name:"Peach Milk Tea", img:"drink-18.webp", cat:"milk", desc:"Light peach milk tea, smooth and refreshing.", prices:[{s:"L",p:"140 EGP"}] },
+  { name:"Jasmine Milk Tea", img:"drink-16.webp", cat:"milk", desc:"Fragrant jasmine milk tea, light and floral.", prices:[{s:"L",p:"140 EGP"}] },
+  { name:"Cream Peach Tea", img:"drink-45.webp", cat:"milk", desc:"Oolong tea with peach and a cream foam top.", prices:[{s:"L",p:"130 EGP"}] },
+  { name:"Cream Jasmine Tea", img:"drink-28.webp", cat:"milk", desc:"Jasmine tea topped with a light cream foam.", prices:[{s:"L",p:"130 EGP"}] },
+  { name:"Taro Milk Tea", img:"drink-11.webp", cat:"milk", desc:"Creamy taro root blended with fresh milk and tea.", prices:[{s:"L",p:"140 EGP"},{s:"M",p:"120 EGP"}] },
+  { name:"Matcha Milk Tea", img:"drink-13.webp", cat:"milk", desc:"Premium Japanese matcha whisked with silky milk.", prices:[{s:"L",p:"150 EGP"},{s:"M",p:"130 EGP"}] },
+  { name:"Mango Milk Tea", img:"drink-14.webp", cat:"milk", badge:"Popular", desc:"Sweet tropical mango blended with creamy milk tea.", prices:[{s:"L",p:"140 EGP"},{s:"M",p:"120 EGP"}] },
+  { name:"Lychee Fruit Tea", img:"drink-15.webp", cat:"fruit", desc:"Bright and refreshing lychee fruit tea over ice.", prices:[{s:"L",p:"130 EGP"}] },
+  { name:"Passion Fruit Tea", img:"drink-23.webp", cat:"fruit", desc:"Tropical passion fruit tea, sweet and tangy.", prices:[{s:"L",p:"130 EGP"}] },
+  { name:"Strawberry Milk Tea", img:"drink-24.webp", cat:"milk", desc:"Fresh strawberry flavour blended into creamy milk tea.", prices:[{s:"L",p:"140 EGP"},{s:"M",p:"120 EGP"}] },
+  { name:"Coconut Milk Tea", img:"drink-25.webp", cat:"milk", desc:"Smooth coconut milk paired with premium black tea.", prices:[{s:"M",p:"140 EGP"}] },
+  { name:"Lemon Green Tea", img:"drink-29.webp", cat:"fruit", desc:"Zesty fresh lemon squeezed into refreshing green tea.", prices:[{s:"L",p:"110 EGP"}] },
+  { name:"Pomelo Fruit Tea", img:"drink-30.webp", cat:"fruit", desc:"Juicy pomelo in a light, refreshing fruit tea base.", prices:[{s:"L",p:"120 EGP"}] },
+  { name:"Grape Fruit Tea", img:"drink-36.webp", cat:"fruit", desc:"Rich grape juice poured over fragrant fruit tea.", prices:[{s:"L",p:"120 EGP"}] },
+  { name:"Mango Fruit Tea", img:"drink-40.webp", cat:"fruit", badge:"Popular", desc:"Tropical mango in a light fruit tea — sunshine in a cup.", prices:[{s:"L",p:"120 EGP"}] },
+  { name:"Pineapple Fruit Tea", img:"drink-44.webp", cat:"fruit", desc:"Sweet pineapple chunks in a fizzy fruit tea.", prices:[{s:"L",p:"120 EGP"}] },
+  { name:"Watermelon Fruit Tea", img:"drink-46.webp", cat:"fruit", desc:"Fresh watermelon juice in a light jasmine tea.", prices:[{s:"L",p:"120 EGP"}] },
+  { name:"Peach Oolong Tea", img:"drink-47.webp", cat:"fruit", desc:"Delicate oolong tea beautifully infused with fresh peach.", prices:[{s:"L",p:"130 EGP"}] },
+  // ── Coffee & Drinks
+  { name:"Spanish Latte", img:"drink-34.webp", cat:"coffee", badge:"Bestseller", desc:"Espresso, condensed milk and steamed milk — sweet and strong.", prices:[{s:"L",p:"150 EGP"},{s:"M",p:"120 EGP"}] },
+  { name:"Creamy Coffee", img:"drink-27.webp", cat:"coffee", desc:"Smooth, creamy coffee for a rich pick-me-up.", prices:[{s:"M",p:"120 EGP"}] },
+  { name:"Creamy Cocoa", img:"new-creamy-cocoa.webp", cat:"coffee", desc:"Rich cocoa topped with a silky cream cap.", prices:[{s:"M",p:"160 EGP"}] },
+  // ── HOT
+  { name:"Spanish Latte", img:"new-hot-spanish.webp", cat:"hot", desc:"Espresso, condensed milk and steamed milk — sweet and strong.", prices:[{s:"M",p:"150 EGP"}] },
+  { name:"Spanish Latte Cream", img:"new-hot-spanish-cream.webp", cat:"hot", desc:"Hot Spanish latte finished with a silky cream cap.", prices:[{s:"M",p:"170 EGP"}] },
+  { name:"Spanish Latte Pistachio", img:"new-hot-spanish-pistachio.webp", cat:"hot", desc:"Hot Spanish latte topped with pistachio cream.", prices:[{s:"M",p:"180 EGP"}] },
+  { name:"Coffee Cream", img:"new-hot-coffee-cream.webp", cat:"hot", desc:"Hot coffee topped with a smooth cream cap.", prices:[{s:"M",p:"160 EGP"}] },
+  { name:"Coffee Pistachio", img:"new-hot-coffee-pistachio.webp", cat:"hot", desc:"Hot coffee topped with pistachio cream.", prices:[{s:"M",p:"170 EGP"}] },
+  { name:"Hot Brown Sugar Milk Tea", img:"new-hot-brown-sugar.webp", cat:"hot", desc:"Warm brown sugar milk tea with chewy boba pearls.", prices:[{s:"M",p:"150 EGP"}] },
+  { name:"Hot Brown Sugar Pudding", img:"new-hot-brown-sugar-pudding.webp", cat:"hot", desc:"Warm brown sugar milk tea with boba and silky pudding.", prices:[{s:"M",p:"170 EGP"}] },
+  { name:"Hot Peach Milk Tea", img:"new-hot-peach-milk.webp", cat:"hot", desc:"Light, warm peach milk tea.", prices:[{s:"M",p:"140 EGP"}] },
+  { name:"Hot Jasmine Milk Tea", img:"new-hot-jasmine-milk.webp", cat:"hot", desc:"Light, warm jasmine milk tea.", prices:[{s:"M",p:"140 EGP"}] },
+  { name:"Cocoa Cream", img:"new-hot-cocoa-cream.webp", cat:"hot", desc:"Hot cocoa finished with a silky cream cap.", prices:[{s:"M",p:"170 EGP"}] },
+  { name:"Cocoa Pistachio", img:"new-hot-cocoa-pistachio.webp", cat:"hot", desc:"Hot cocoa topped with pistachio cream.", prices:[{s:"M",p:"180 EGP"}] },
+  { name:"Cream Taro Coconut Milk", img:"new-hot-taro-coconut.webp", cat:"hot", desc:"Warm taro and coconut milk with a cream cap.", prices:[{s:"M",p:"170 EGP"}] },
+  { name:"Pistachio Peach Milk Tea", img:"new-hot-pistachio-peach-milk.webp", cat:"hot", desc:"Warm peach milk tea topped with pistachio cream.", prices:[{s:"M",p:"170 EGP"}] },
+  { name:"Pistachio Jasmine Milk Tea", img:"new-hot-pistachio-jasmine-milk.webp", cat:"hot", desc:"Warm jasmine milk tea topped with pistachio cream.", prices:[{s:"M",p:"170 EGP"}] },
+  { name:"Cream Peach Milk Tea Hot", img:"new-hot-cream-peach-milk.webp", cat:"hot", desc:"Warm peach milk tea finished with a cream cap.", prices:[{s:"M",p:"160 EGP"}] },
+  { name:"Cream Jasmine Milk Tea Hot", img:"new-hot-cream-jasmine-milk.webp", cat:"hot", desc:"Warm jasmine milk tea finished with a cream cap.", prices:[{s:"M",p:"160 EGP"}] },
+  { name:"Strawberry Ceylon", img:"new-hot-strawberry-ceylon.webp", cat:"hot", desc:"Strong Ceylon black tea with a sweet strawberry twist.", prices:[{s:"M",p:"150 EGP"}] },
+  { name:"Hot Taro Pistachio", img:"new-hot-taro-pistachio.webp", cat:"hot", desc:"Warm taro milk topped with pistachio cream.", prices:[{s:"M",p:"175 EGP"}] },
+  // ── ICE
+  { name:"Iced Chocolate Milk Tea", img:"new-ice-choc.webp", cat:"ice", desc:"Rich chocolate paired with cold creamy milk tea over ice.", prices:[{s:"L",p:"150 EGP"}] },
+  { name:"Iced Duo Milk Tea", img:"new-ice-duo.webp", cat:"ice", badge:"New", desc:"Two flavours swirled together into one chilled milk tea.", prices:[{s:"L",p:"160 EGP"}] },
+  { name:"Iced Milk Tea", img:"new-ice-milk.webp", cat:"ice", desc:"Classic cold milk tea — simple, smooth and refreshing.", prices:[{s:"L",p:"130 EGP"}] },
+  { name:"Mango Coconut Fresh", img:"new-mango-coconut-fresh.webp", cat:"ice", badge:"New", desc:"Tropical mango and coconut over crushed ice — summer in a cup.", prices:[{s:"L",p:"150 EGP"}] },
+  { name:"Pistachio Jasmine Milk Cold", img:"new-pistachio-jasmine-milk-cold.webp", cat:"ice", desc:"Cold jasmine milk tea topped with pistachio cream.", prices:[{s:"L",p:"160 EGP"}] },
+  { name:"Pistachio Peach Milk Cold", img:"new-pistachio-peach-milk-cold.webp", cat:"ice", desc:"Chilled peach milk tea with a pistachio cream topping.", prices:[{s:"L",p:"160 EGP"}] },
+  { name:"Pomegranate Lemon", img:"new-pom-lemon.webp", cat:"ice", desc:"Tangy pomegranate and lemon over fruit tea and ice.", prices:[{s:"L",p:"140 EGP"}] },
+  { name:"Pomegranate Slush", img:"new-pom-slush.webp", cat:"ice", badge:"Popular", desc:"Icy blended pomegranate slush — bold and refreshing.", prices:[{s:"L",p:"145 EGP"}] },
+  { name:"Taro Cold", img:"new-taro-cold.webp", cat:"ice", desc:"Cold creamy taro milk tea — smooth and subtly sweet.", prices:[{s:"L",p:"145 EGP"}] },
+  // ── Specials
+  { name:"Hot Mandarin Tea", img:"special-hot-mandarin.webp", cat:"special", badge:"Limited", desc:"Warming fragrant mandarin steeped in premium black tea.", prices:[{s:"M",p:"160 EGP"}] },
+  { name:"Lemon Black Tea", img:"special-lemon-black-tea.webp", cat:"special", badge:"Limited", desc:"Bold black tea with a bright fresh lemon squeeze.", prices:[{s:"L",p:"130 EGP"}] },
+  { name:"Orange Black Tea", img:"special-orange-black-tea.webp", cat:"special", badge:"Limited", desc:"Rich black tea infused with sweet Valencia orange.", prices:[{s:"L",p:"130 EGP"}] },
+];
+
+// ─── BUILD MENU GRID ─────────────────────────────────────────
+const CATS = [
+  { id:'milk',    title:'🥛 Milk Tea' },
+  { id:'fruit',   title:'🍋 Fruit Tea' },
+  { id:'coffee',  title:'🍫 Coffee & Cocoa' },
+  { id:'hot',     title:'☕ Hot Drinks' },
+  { id:'ice',     title:'🧊 Iced' },
+  { id:'special', title:'⭐ Specials' }
+];
+
+function cardHTML(d) {
+  return `
+    <div class="menu-card" onclick="toggleCard(this, event)">
+      ${d.badge ? `<span class="card-badge">${d.badge}</span>` : ''}
+      <div class="card-img-wrap">
+        <img src="assets/${d.img}" alt="${d.name}" loading="lazy" decoding="async"/>
+      </div>
+      <div class="card-name-bar"><h3>${d.name}</h3></div>
+      <div class="card-detail">
+        <button class="card-detail-close" onclick="closeCard(event, this.closest('.menu-card'))">✕</button>
+        <div class="card-detail-name">${d.name}</div>
+        <div class="card-detail-desc">${d.desc}</div>
+        <div class="card-price-row">
+          ${d.prices.map(p => `<span class="card-price"><small>${p.s}</small> ${p.p}</span>`).join('')}
+        </div>
+      </div>
+    </div>`;
+}
+
+// Menu is shown as one titled section per category ("All" = every section, a tab = just that one)
+function buildMenu(cat) {
+  const grid = document.getElementById('menuGrid');
+  const groups = CATS.filter(c => cat === 'all' || c.id === cat)
+    .map(c => ({ ...c, items: MENU.filter(d => d.cat === c.id) }))
+    .filter(g => g.items.length);
+  grid.innerHTML = groups.map(g => `
+    <section class="menu-cat" id="cat-${g.id}">
+      <div class="menu-cat-head"><h3>${g.title}</h3><span>${g.items.length}</span></div>
+      <div class="menu-grid">${g.items.map(cardHTML).join('')}</div>
+    </section>`).join('');
+}
+
+function toggleCard(card, e) {
+  // Don't toggle if clicking close button
+  if (e.target.classList.contains('card-detail-close')) return;
+  const wasSelected = card.classList.contains('selected');
+  // Close all
+  document.querySelectorAll('.menu-card.selected').forEach(c => c.classList.remove('selected'));
+  if (!wasSelected) card.classList.add('selected');
+}
+
+function closeCard(e, card) {
+  e.stopPropagation();
+  card.classList.remove('selected');
+}
+
+// Category switching
+document.getElementById('catTabs').addEventListener('click', e => {
+  const tab = e.target.closest('.cat-tab');
+  if (!tab) return;
+  document.querySelectorAll('.cat-tab').forEach(t => t.classList.remove('active'));
+  tab.classList.add('active');
+  buildMenu(tab.dataset.cat);
+});
+
+// Initial build
+buildMenu('all');
+
+// ─── VIDEO REEL ──────────────────────────────────────────────
+const slides = document.querySelectorAll('.reel-slide');
+const dots = document.querySelectorAll('.reel-dot');
+let current = 0;
+let reelTimer;
+
+const reelVideos = [...slides].map(s => s.querySelector('video'));
+const hero = document.getElementById('home');
+const SLIDE_MS = 8000;
+// Skip autoplay on Data Saver / reduced motion: the poster (first frame of the video) stays visible
+const conn = navigator.connection || {};
+const reelDisabled = conn.saveData || matchMedia('(prefers-reduced-motion: reduce)').matches;
+let heroVisible = true;
+
+function playVideo(v) { if (v && !reelDisabled) { const p = v.play(); if (p) p.catch(()=>{}); } }
+
+// Load the next video quietly in the background so it is ready before its turn
+function warmUp(i) {
+  const v = reelVideos[i % reelVideos.length];
+  if (v && v.preload !== 'auto') { v.preload = 'auto'; v.load(); }
+}
+
+function goToSlide(n) {
+  slides[current].classList.remove('active');
+  dots[current].classList.remove('active');
+  reelVideos[current]?.pause();
+
+  current = (n + slides.length) % slides.length;
+  slides[current].classList.add('active');
+  dots[current].classList.add('active');
+  const vid = reelVideos[current];
+  if (vid) { try { vid.currentTime = 0; } catch(e){} playVideo(vid); }
+  warmUp(current + 1);
+}
+
+function startReel() {
+  clearInterval(reelTimer);
+  if (reelDisabled) return;
+  reelTimer = setInterval(() => { if (heroVisible && !document.hidden) goToSlide(current + 1); }, SLIDE_MS);
+}
+
+dots.forEach(d => {
+  d.addEventListener('click', () => {
+    goToSlide(+d.dataset.dot);
+    startReel();
+  });
+});
+
+// Pause everything when the hero is off-screen or the tab is hidden (saves data + battery)
+new IntersectionObserver(([e]) => {
+  heroVisible = e.isIntersecting;
+  if (heroVisible) playVideo(reelVideos[current]); else reelVideos[current]?.pause();
+}, { threshold: 0.15 }).observe(hero);
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden) reelVideos[current]?.pause(); else if (heroVisible) playVideo(reelVideos[current]);
+});
+
+// Start: first video plays now; the 2nd starts loading once the 1st is playing
+if (reelDisabled) { reelVideos[0].removeAttribute('autoplay'); reelVideos[0].preload = 'none'; }
+else {
+  playVideo(reelVideos[0]);
+  const first = reelVideos[0];
+  const afterFirst = () => { warmUp(1); setTimeout(() => warmUp(2), 4000); };
+  if (first.readyState >= 3) afterFirst(); else first.addEventListener('canplay', afterFirst, { once: true });
+}
+startReel();
+
+// ─── NAV SCROLL ──────────────────────────────────────────────
+const nav = document.getElementById('siteNav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 40);
+});
+
+// ─── BURGER MENU ─────────────────────────────────────────────
+const burger = document.getElementById('burger');
+const mobileNav = document.getElementById('mobileNav');
+burger.addEventListener('click', () => {
+  burger.classList.toggle('open');
+  mobileNav.classList.toggle('open');
+  burger.setAttribute('aria-expanded', mobileNav.classList.contains('open') ? 'true' : 'false');
+});
+function closeMobile() {
+  burger.classList.remove('open');
+  mobileNav.classList.remove('open');
+  burger.setAttribute('aria-expanded', 'false');
+}
+
+
+// ─── BRANCH SEARCH + AREA FILTER ─────────────────────────────
+const branchSearch = document.getElementById('branchSearch');
+const branchArea = document.getElementById('branchArea');
+const branchCards = [...document.querySelectorAll('#branchesGrid .branch-card')];
+const branchCount = document.getElementById('branchCount');
+const branchesEmpty = document.getElementById('branchesEmpty');
+function filterBranches() {
+  const query = (branchSearch?.value || '').trim().toLowerCase();
+  const area = branchArea?.value || 'all';
+  let visible = 0;
+  branchCards.forEach(card => {
+    const matchesText = (card.dataset.branch || '').includes(query);
+    const matchesArea = area === 'all' || card.dataset.area === area;
+    const show = matchesText && matchesArea;
+    card.hidden = !show;
+    if (show) visible++;
+  });
+  if (branchCount) branchCount.textContent = `${visible} ${visible === 1 ? 'LOCATION' : 'LOCATIONS'}`;
+  if (branchesEmpty) branchesEmpty.hidden = visible !== 0;
+  syncBranchMap();
+}
+branchSearch?.addEventListener('input', filterBranches);
+branchArea?.addEventListener('change', filterBranches);
+
+
+// ─── BRANCH MAP ──────────────────────────────────────────────
+const branchMapWrap = document.getElementById('branchMapWrap');
+const branchMapFallback = document.getElementById('branchMapFallback');
+let branchMap = null;
+const branchMarkers = new Map();
+function initBranchMap() {
+  if (!(window.L && document.getElementById('branch-map'))) { showMapFallback(); return; }
+  branchMap = L.map('branch-map', { scrollWheelZoom: false }).setView([30.06, 31.33], 11);
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+  }).addTo(branchMap);
+  branchCards.forEach(card => {
+    const lat = Number(card.dataset.lat), lng = Number(card.dataset.lng);
+    if (!Number.isFinite(lat) || !Number.isFinite(lng)) return;
+    const name = card.querySelector('h3')?.textContent || 'Neferdidi';
+    const address = card.querySelector('p')?.textContent || '';
+    const mapsLink = card.querySelector('.branch-map-link')?.href || 'https://www.google.com/maps/search/Neferdidi/';
+    const popup = `<div class="map-popup"><b>${name}</b><span>${address}</span><a href="${mapsLink}" target="_blank" rel="noopener">Open in Google Maps ↗</a></div>`;
+    const marker = L.marker([lat, lng]).bindPopup(popup);
+    branchMarkers.set(card, marker);
+  });
+  branchMap.on('click', () => branchMap.scrollWheelZoom.enable());
+  branchMap.on('mouseout', () => branchMap.scrollWheelZoom.disable());
+  setTimeout(() => { branchMap.invalidateSize(); syncBranchMap(); }, 350);
+  window.addEventListener('load', () => branchMap.invalidateSize());
+}
+function showMapFallback() {
+  if (branchMapFallback) {
+    branchMapFallback.hidden = false;
+    document.getElementById('branch-map').hidden = true;
+  }
+}
+// Leaflet (CSS + JS) loads only when the visitor scrolls near the map — keeps the first load fast
+let mapRequested = false;
+function loadBranchMap() {
+  if (mapRequested) return;
+  mapRequested = true;
+  const css = document.createElement('link');
+  css.rel = 'stylesheet';
+  css.href = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';
+  css.crossOrigin = '';
+  document.head.appendChild(css);
+  const js = document.createElement('script');
+  js.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
+  js.crossOrigin = '';
+  js.onload = initBranchMap;
+  js.onerror = showMapFallback;
+  document.head.appendChild(js);
+}
+if (branchMapWrap && 'IntersectionObserver' in window) {
+  const mapObs = new IntersectionObserver(([e]) => {
+    if (e.isIntersecting) { mapObs.disconnect(); loadBranchMap(); }
+  }, { rootMargin: '600px 0px' });
+  mapObs.observe(branchMapWrap);
+} else loadBranchMap();
+function syncBranchMap() {
+  if (!branchMap) return;
+  const visibleMarkers = [];
+  branchMarkers.forEach((marker, card) => {
+    if (!card.hidden) {
+      if (!branchMap.hasLayer(marker)) marker.addTo(branchMap);
+      visibleMarkers.push(marker.getLatLng());
+    } else if (branchMap.hasLayer(marker)) {
+      branchMap.removeLayer(marker);
+    }
+  });
+  if (visibleMarkers.length === 1) branchMap.setView(visibleMarkers[0], 15);
+  else if (visibleMarkers.length > 1) branchMap.fitBounds(L.latLngBounds(visibleMarkers).pad(.15));
+}
+document.querySelectorAll('[data-focus-branch]').forEach(button => {
+  button.addEventListener('click', () => {
+    const card = button.closest('.branch-card');
+    const marker = branchMarkers.get(card);
+    if (!branchMap || !marker) return;
+    branchMapWrap.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    branchMap.flyTo(marker.getLatLng(), 15, { duration: .8 });
+    setTimeout(() => marker.openPopup(), 850);
+  });
+});
+syncBranchMap();
+
+// ─── SCROLL APPEAR ───────────────────────────────────────────
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('appeared'); } });
+}, { threshold: 0.12 });
+document.querySelectorAll('[data-appear]').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
